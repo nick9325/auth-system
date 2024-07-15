@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 
 
-export default function RegisterUser() {
+export default function LoginUser() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -68,7 +68,7 @@ export default function RegisterUser() {
  
         if(email===""){
             toast.dismiss()
-            toast.error("Email requied!")
+            toast.error("Email required!")
         }
         else if(!validateEmail(email)){
             toast.dismiss()
@@ -104,11 +104,11 @@ export default function RegisterUser() {
                         <form className="space-y-2 md:space-y-6 " action="#">
 
                             <div>
-                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div>
-                                <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
 
@@ -118,14 +118,14 @@ export default function RegisterUser() {
                                         <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
                                     </div>
                                     <div className="ml-3 text-sm">
-                                        <label for="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                                        <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                     </div>
                                 </div>
                                 <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                             </div> */}
                             <button onClick={handleSignInClick} type="submit" className="w-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Sign In</button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
-                                Don't have an account yet? <Link href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
+                                Don&apos;t have an account yet? <Link href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
                             </p>
                         </form>
                     </div>
