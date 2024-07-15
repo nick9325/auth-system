@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "jest-fetch-mock": "^3.0.3",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "cypress": "^13.13.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "eslint-plugin-jest-dom": "^5.4.0",

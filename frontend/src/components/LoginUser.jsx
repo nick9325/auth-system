@@ -54,7 +54,7 @@ export default function LoginUser() {
         }
         else if(response.status === 404){
             toast.dismiss()
-            toast.error(`User doesn't exits!`)
+            toast.error("User doesn't exists!")
         }
         else {
               toast.dismiss()
