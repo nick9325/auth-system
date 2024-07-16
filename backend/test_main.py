@@ -33,16 +33,35 @@ def test_db():
     yield db
     db.close()
 
-def test_create_user(test_db):
+def test_create_duplicate_user(test_db):
+    
     response = client.post(
         "/users/",
         json={"name": "New User", "email": "newuser@example.com", "password": "newpassword"}
     )
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Email already registered"}
+
+
+def test_create_user(test_db):
+    response = client.post(
+        "/users/",
+        json={"name": "New User", "email": "newuser3@example.com", "password": "newpassword"}
+    )
     assert response.status_code == 200
     data = response.json()
-    assert data["email"] == "newuser@example.com"
+    assert data["email"] == "newuser3@example.com"
     assert "id" in data
     assert "hashed_password" not in data
+
+
+def test_login_incorrect_credentials(test_db):
+    response = client.post(
+        "/login",
+        data={"username": "testuser", "password": "wrongpassword"}
+    )
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Incorrect email or password"}
 
 def test_login_for_access_token(test_db):
     response = client.post(
@@ -53,6 +72,11 @@ def test_login_for_access_token(test_db):
     data = response.json()
     assert "access_token" in data
     assert data["token_type"] == "bearer"
+
+def test_read_users_me_no_token(test_db):
+    response = client.get("/users/me/")
+    assert response.status_code == 401
+    assert response.json() == {"detail": "Not authenticated"}
 
 def test_read_users_me(test_db):
     response = client.post(
