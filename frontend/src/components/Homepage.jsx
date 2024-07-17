@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 
 
@@ -55,6 +56,58 @@ export default function Homepage() {
         router.push('/login')
 
     }
+    const handleUpdateClick = () => {
+
+        router.push(`/update/${userData?.id}`)
+
+    }
+
+    const delete_profile=async()=>{
+
+        toast.dismiss()
+        toast.loading('Updating..')
+
+
+        const token = localStorage.getItem('token');
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        var requestOptions = {  
+            method: 'DELETE',
+            headers: myHeaders,
+        };
+
+        const response = await fetch(`http://127.0.0.1:8000/users/${userData?.id}`, requestOptions)
+
+
+        if (response.ok) {
+            let res = await response.json();
+            router.push('/register');
+            toast.dismiss()
+            toast.success('Profile deleted successfully!')
+            console.log(res)
+
+        }
+        else if (response.status === 404) {
+            toast.dismiss()
+            toast.error("User doesn't exists!")
+        }
+        else {
+            toast.dismiss()
+            toast.error('Failed to delete profile')
+        }
+
+
+    }
+
+
+    const handleDeleteClick = () => {
+        
+        alert('Are you sure you want to delete your profile?')
+
+        delete_profile()
+
+    }
 
     useEffect(() => {
         fetchUser()
@@ -63,7 +116,10 @@ export default function Homepage() {
 
 
     return (
-        <>{userData ?
+        <>
+        
+        
+        {userData ?
             <div className={`flex flex-col items-center justify-center text-center transition-opacity duration-1000 ${isMounted ? 'opacity-100' : 'opacity-0'}`}>
                 <h1 className='text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent'>
                     Welcome, {userData?.name}
@@ -71,13 +127,27 @@ export default function Homepage() {
                 <h2 className='text-2xl mt-2 text-gray-700'>
                     You have successfully logged in
                 </h2>
-                <div className='pt-8'>
+                <div className='pt-8 flex flex-col gap-2'>
                     <button
                         onClick={handleSignOutClick}
                         name='signout'
                         className='w-full max-w-xs text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 transition-transform transform hover:scale-105'
                     >
                         Sign out
+                    </button>
+                    <button
+                        onClick={handleUpdateClick}
+                        name='update'
+                        className='w-full max-w-xs text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 transition-transform transform hover:scale-105 text-nowrap'
+                    >
+                        Update profile
+                    </button>
+                    <button
+                        onClick={handleDeleteClick}
+                        name='delete'
+                        className='w-full max-w-xs text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 transition-transform transform hover:scale-105 text-nowrap'
+                    >
+                        Delete account
                     </button>
                 </div>
             </div> : <div role="status">

@@ -12,7 +12,7 @@ export default function ThemeSwitcher({ className }) {
     return (
         <>
             {theme_switcher && (
-                <div className={`theme-switcher fixed right-28 top-4 ${className}`}>
+                <div className={`theme-switcher fixed right-6 top-4 ${className}`}>
                     <label htmlFor="theme-switcher" className="flex items-center cursor-pointer">
                         <div className="relative">
                             <input
@@ -31,11 +31,12 @@ export default function ThemeSwitcher({ className }) {
                             <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
                             <div
                                 className={`dot absolute left-1 top-1 bg-black w-6 h-6 rounded-full transition ${theme === "dark" || resolvedTheme === "dark"
-                                    ? "transform translate-x-full bg-white"
-                                    : "bg-black"
+                                    ? "transform translate-x-full bg-black "
+                                    : "bg-white"
                                     }`}
                             ></div>
                         </div>
+                        
 
                     </label>
                 </div>
