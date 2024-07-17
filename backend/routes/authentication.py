@@ -1,10 +1,10 @@
 
 from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from crud.crud import get_user_by_email, create_user, authenticate_user, get_user_profile
-from core.security import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES, get_current_user
+from crud.crud import get_user_by_email, create_user, authenticate_user
+from core.security import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 from schemas.schemas import UserCreate, Token, User
 from db.dependency import get_db
 
@@ -32,9 +32,6 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Email already registered")
     return create_user(db=db, user=user)
 
-@router.get("/users/me/", response_model=User)
-def read_users_me(current_user: User = Depends(get_current_user)):
-    return current_user
 
 
 
