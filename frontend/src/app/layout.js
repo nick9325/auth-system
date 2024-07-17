@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastConfig } from "./toast-config";
+import { ThemeProvider } from "next-themes";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +15,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToastConfig/>
+
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme={"light"}
+          enableColorScheme={false}
+        >
+
+          <ToastConfig />
+      
+          <ThemeSwitcher />
           {children}
+
+        </ThemeProvider>
+
+
+
+
 
       </body>
     </html>

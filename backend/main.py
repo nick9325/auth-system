@@ -5,10 +5,9 @@ import routes.routes as routes
 from fastapi.middleware.cors import CORSMiddleware
 
 
-
-
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
+
 
 
 origins = [
