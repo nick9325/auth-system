@@ -13,10 +13,10 @@ This project is a web application with authentication and authorization features
 6. Dark/Light Mode Toggle
 7. Jest and Cypress (E2E) Test Cases
 
-### Backend (FastAPI and JWT)
+### Backend (FastAPI, MySQL and JWT)
 1. **POST /login** - Login for Access Token
 2. **POST /users/** - Register User
-3. **GET /users/me/** - Read Users Me
+3. **GET /users/me/** - Read current user
 4. **PUT /users/{user_id}** - Update User
 5. **DELETE /users/{user_id}** - Delete User
 6. Pytest Test Cases
