@@ -2,7 +2,7 @@
 
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -41,7 +41,7 @@ export default function UpdateProfile() {
 
         console.log(raw);
 
-        var requestOptions = {  
+        var requestOptions = {
             method: 'PUT',
             headers: myHeaders,
             body: raw,
@@ -58,7 +58,7 @@ export default function UpdateProfile() {
             console.log(res)
 
         }
-        else if(response.status === 400){
+        else if (response.status === 400) {
             toast.dismiss()
             toast.error("User already exists!")
         }
@@ -76,7 +76,7 @@ export default function UpdateProfile() {
     const handleUpdateClick = (e) => {
         e.preventDefault()
 
-        if(name === ""){
+        if (name === "") {
             toast.dismiss()
             toast.error("Name required!")
         }
@@ -92,6 +92,11 @@ export default function UpdateProfile() {
         else {
             update();
         }
+    }
+
+    const handleCancelClick=(e)=>{
+        e.preventDefault()
+        router.push('/')
     }
 
 
@@ -117,7 +122,11 @@ export default function UpdateProfile() {
                                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
 
-                            <button onClick={handleUpdateClick} type="submit" className="w-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Sign In</button>
+                            <div className='flex pt-2'>
+                                <button onClick={handleUpdateClick} type="submit" className="w-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Save</button>
+
+                                <button onClick={handleCancelClick} className="w-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cancel</button>
+                            </div>
 
                         </form>
                     </div>
