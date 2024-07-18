@@ -97,7 +97,7 @@ export default function RegisterUser() {
         if(token){
             router.push('/')
         }
-    })
+    },[])
 
 
 

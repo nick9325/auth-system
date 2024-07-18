@@ -118,7 +118,7 @@ export default function Homepage() {
     useEffect(() => {
         fetchUser()
         setIsMounted(true);
-    },)
+    },[])
 
 
     return (

@@ -88,7 +88,7 @@ export default function LoginUser() {
         if(token){
             router.push('/')
         }
-    })
+    },[])
 
 
 
