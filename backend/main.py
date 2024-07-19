@@ -14,7 +14,8 @@ Base.metadata.create_all(bind=engine)
 origins = [
     "http://localhost",
     "http://localhost:8000",
-    "http://localhost:3000",  
+    "http://localhost:3000",
+    "https://auth-system-woad.vercel.app",  
 ]
 
 app.add_middleware(
