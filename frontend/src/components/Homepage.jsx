@@ -75,9 +75,6 @@ export default function Homepage() {
 
     const delete_profile = async () => {
 
-        toast.dismiss()
-        toast.loading('Updating..')
-
 
         const token = localStorage.getItem('token');
         const myHeaders = new Headers();
@@ -99,7 +96,7 @@ export default function Homepage() {
         }
         else if (response.status === 404) {
             toast.dismiss()
-            toast.error("User doesn't exists!")
+            toast.error("User doesn't exist!")
         }
         else {
             toast.dismiss()
