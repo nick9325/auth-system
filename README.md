@@ -36,7 +36,7 @@ This project is a web application with authentication and authorization features
 - When the user clicks on the Sign out button, it should trigger the sign-out process
 - Update button should update user data / form validations for it
 - Delete profile button should delete profile and redirect to registration
-  - The complete flow has been tested from start to end using Cypress
+- The complete flow has been tested from start to end using Cypress
 
 ### Backend: Pytest
 - Create user / create duplicate user
